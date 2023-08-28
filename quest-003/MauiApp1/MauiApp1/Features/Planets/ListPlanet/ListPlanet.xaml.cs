@@ -32,7 +32,8 @@ public partial class ListPlanet : ContentPage
     {
         if (this.lstPlanets.SelectedItem != null)
         {
-            await Shell.Current.GoToAsync(nameof(AddPlanet.AddPlanet));
+            var planet = this.lstPlanets.SelectedItem as Planet;
+            await Shell.Current.GoToAsync($"{nameof(AddPlanet.AddPlanet)}?Id={planet.Id}");
         }
     }
 
