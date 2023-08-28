@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Features.Planets.ListPlanet.ListPlanet"
+             xmlns:models="clr-namespace:MauiApp1.Features.Planets.Models"
+             Title="Liste des planètes">
+    <ContentPage.Resources>
+        <Style TargetType="ListView">
+            <Setter Property="SeparatorColor" Value="AliceBlue"></Setter>
+            <Setter Property="RowHeight" Value="150"></Setter>
+        </Style>
+
+        <DataTemplate x:Key="resumePlanets" x:DataType="models:Planet">
+            <TextCell Text="{Binding Name}" Detail="{Binding Description}"></TextCell>
+        </DataTemplate>
+    </ContentPage.Resources>
+    <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="15*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="0" Grid.Column="2" Text="Back" x:Name="btnGoBack"></Button>
+
+
+            </Grid>
+            <Grid Grid.Row="1">
+                <ListView BackgroundColor="Transparent" x:Name="lstPlanets" ItemTemplate="{Binding Source={StaticResource resumePlanets}}">
+                </ListView>
+            </Grid>
+        </Grid>
+    </StackLayout>
+</ContentPage>
