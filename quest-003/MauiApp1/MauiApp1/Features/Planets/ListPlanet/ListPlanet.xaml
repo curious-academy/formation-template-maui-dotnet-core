@@ -36,7 +36,7 @@
 
             </Grid>
             <Grid Grid.Row="1">
-                <ListView BackgroundColor="Transparent" x:Name="lstPlanets" ItemTemplate="{Binding Source={StaticResource resumePlanets}}">
+                <ListView BackgroundColor="Transparent" x:Name="lstPlanets" ItemSelected="lstPlanets_ItemSelected" ItemTapped="lstPlanets_ItemTapped" ItemTemplate="{Binding Source={StaticResource resumePlanets}}">
                 </ListView>
             </Grid>
         </Grid>
