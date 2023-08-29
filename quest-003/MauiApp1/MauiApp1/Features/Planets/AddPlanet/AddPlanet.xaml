@@ -2,19 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Features.Planets.AddPlanet.AddPlanet"
+             xmlns:uc="clr-namespace:MauiApp1.Features.Planets.Shared.Views"
              Title="Ajout d'une planète">
-    <VerticalStackLayout Spacing="10" Margin="10, 10, 10, 10">
-        <Frame>
-            <HorizontalStackLayout>
-                <Label Text="Nom" ></Label>
-                <Entry x:Name="txtName"></Entry>
-            </HorizontalStackLayout>
-        </Frame>
-
-        <Frame>
-            <HorizontalStackLayout>
-                <Button x:Name="btnSave" Text="Save" Clicked="btnSave_Clicked"></Button>
-            </HorizontalStackLayout>
-        </Frame>
-    </VerticalStackLayout>
+    <uc:PlanetData x:Name="planetData" OnError="planetData_OnError" OnSaving="planetData_OnSaving"></uc:PlanetData>
 </ContentPage>

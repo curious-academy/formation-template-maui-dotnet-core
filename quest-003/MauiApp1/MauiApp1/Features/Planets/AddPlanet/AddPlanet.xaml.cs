@@ -17,11 +17,6 @@ public partial class AddPlanet : ContentPage
     #endregion
 
     #region Internal methods
-    private void btnSave_Clicked(object sender, EventArgs e)
-    {
-        this.CurrentItem.Set(this.txtName.Text);
-        Shell.Current.GoToAsync("..");
-    }
     #endregion
 
     #region Properties
@@ -30,10 +25,21 @@ public partial class AddPlanet : ContentPage
         set
         {
             this.CurrentItem = this.planets.GetById(value);
-            this.txtName.Text = this.CurrentItem.Name;
+            this.planetData.Name = this.CurrentItem.Name;
         }
     }
 
     public Planet CurrentItem { get; set; }
     #endregion
+
+    private void planetData_OnError(object sender, string e)
+    {
+        DisplayAlert("ERROR", e, "OK");
+    }
+
+    private void planetData_OnSaving(object sender, EventArgs e)
+    {
+        this.CurrentItem.Set(this.planetData.Name);
+        Shell.Current.GoToAsync("..");
+    }
 }

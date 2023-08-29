@@ -49,6 +49,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Maui" Version="5.3.0" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Compile Update="Features\Planets\AddPlanet\AddPlanet.xaml.cs">
 	    <DependentUpon>AddPlanet.xaml</DependentUpon>
 	  </Compile>
@@ -62,6 +66,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Planets\ListPlanet\ListPlanet.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Planets\Shared\Views\PlanetData.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
