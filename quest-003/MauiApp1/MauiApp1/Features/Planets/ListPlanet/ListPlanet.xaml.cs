@@ -4,6 +4,10 @@ namespace MauiApp1.Features.Planets.ListPlanet;
 
 public partial class ListPlanet : ContentPage
 {
+    #region Fields
+    private Features.Planets.Models.Planets planets = new Features.Planets.Models.Planets();
+    #endregion
+
     public ListPlanet()
     {
         InitializeComponent();
@@ -17,12 +21,7 @@ public partial class ListPlanet : ContentPage
 
     private void DisplayPlanets()
     {
-        List<Planet> strings = new()
-        {
-            new () { Id = 1, Name = "Coruscant", Description="bl" },
-            new () { Id = 2, Name = "Kashhyk", Description = "bla" }
-        };
-        this.lstPlanets.ItemsSource = strings;
+        this.lstPlanets.ItemsSource = this.planets.List;
 
         DisplayActionSheet("Hello", "Cancel ?", "Destroy", FlowDirection.LeftToRight);
         DisplayAlert("Hello !", "Yeah", "Cancel", FlowDirection.LeftToRight);

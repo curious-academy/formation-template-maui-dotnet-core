@@ -6,8 +6,14 @@
     <VerticalStackLayout Spacing="10" Margin="10, 10, 10, 10">
         <Frame>
             <HorizontalStackLayout>
-                <Label Text="Nom"></Label>
-                <Entry></Entry>
+                <Label Text="Nom" ></Label>
+                <Entry x:Name="txtName"></Entry>
+            </HorizontalStackLayout>
+        </Frame>
+
+        <Frame>
+            <HorizontalStackLayout>
+                <Button x:Name="btnSave" Text="Save" Clicked="btnSave_Clicked"></Button>
             </HorizontalStackLayout>
         </Frame>
     </VerticalStackLayout>
