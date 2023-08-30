@@ -50,6 +50,8 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\AllModels\AllModels.csproj" />
+	  <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
+	  <ProjectReference Include="..\Services\Services.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

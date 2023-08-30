@@ -9,11 +9,17 @@ public partial class ListPlanet : ContentPage
     private AllModels.Planets.Planets planets = new AllModels.Planets.Planets();
     #endregion
 
-    public ListPlanet()
+    public ListPlanet(PlanetsUseCase planetsUseCase)
     {
+        this.PlanetsUseCase = planetsUseCase;
         InitializeComponent();
-
     }
+
+    //public ListPlanet()
+    //{
+    //    //   this.PlanetsUseCase = planetsUseCase;
+    //    InitializeComponent();
+    //}
 
     protected override void OnAppearing()
     {
@@ -69,4 +75,8 @@ public partial class ListPlanet : ContentPage
     {
 
     }
+
+    #region Properties
+    public PlanetsUseCase PlanetsUseCase { get; init; }
+    #endregion
 }
