@@ -1,4 +1,5 @@
 using AllModels.Planets;
+using MauiApp1.Features.Planets.ListPlanet.ViewModels;
 using System.Collections.ObjectModel;
 
 namespace MauiApp1.Features.Planets.ListPlanet;
@@ -7,12 +8,14 @@ public partial class ListPlanet : ContentPage
 {
     #region Fields
     private AllModels.Planets.Planets planets = new AllModels.Planets.Planets();
+    private readonly ListPlanetViewModel viewModel;
     #endregion
 
-    public ListPlanet(PlanetsUseCase planetsUseCase)
+    public ListPlanet(ListPlanetViewModel viewModel)
     {
-        this.PlanetsUseCase = planetsUseCase;
         InitializeComponent();
+        this.viewModel = viewModel;
+        this.BindingContext = viewModel;
     }
 
     //public ListPlanet()
@@ -35,11 +38,8 @@ public partial class ListPlanet : ContentPage
     private async Task DisplayPlanets()
     {
         this.activity.IsRunning = true;
-        this.lstPlanets.ItemsSource = new ObservableCollection<Planet>(await this.PlanetsUseCase.GetAllAsync());
+        await this.viewModel.Load();
         this.activity.IsRunning = false;
-
-        //DisplayActionSheet("Hello", "Cancel ?", "Destroy", FlowDirection.LeftToRight);
-        //DisplayAlert("Hello !", "Yeah", "Cancel", FlowDirection.LeftToRight);
     }
 
     private async void lstPlanets_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -78,7 +78,5 @@ public partial class ListPlanet : ContentPage
 
     }
 
-    #region Properties
-    public PlanetsUseCase PlanetsUseCase { get; init; }
-    #endregion
+
 }

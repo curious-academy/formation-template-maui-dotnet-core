@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Features.Planets.ListPlanet.ListPlanet"
              xmlns:models="clr-namespace:AllModels.Planets;assembly=AllModels"
+             xmlns:vm="clr-namespace:MauiApp1.Features.Planets.ListPlanet.ViewModels"
+             x:DataType="vm:ListPlanetViewModel"
              Title="Liste des planètes">
     <ContentPage.Resources>
         <Style TargetType="ListView">
@@ -44,7 +46,7 @@
             <Grid Grid.Row="2">
                 <VerticalStackLayout>
                     <ActivityIndicator x:Name="activity"></ActivityIndicator>
-                    <ListView BackgroundColor="Transparent" x:Name="lstPlanets" ItemSelected="lstPlanets_ItemSelected" ItemTapped="lstPlanets_ItemTapped" ItemTemplate="{Binding Source={StaticResource resumePlanets}}">
+                    <ListView BackgroundColor="Transparent" x:Name="lstPlanets" ItemsSource="{Binding Planets}" ItemSelected="lstPlanets_ItemSelected" ItemTapped="lstPlanets_ItemTapped" ItemTemplate="{Binding Source={StaticResource resumePlanets}}">
                     </ListView>
                 </VerticalStackLayout>
             </Grid>
