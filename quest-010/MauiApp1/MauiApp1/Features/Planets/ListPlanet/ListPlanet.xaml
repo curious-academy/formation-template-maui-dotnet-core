@@ -13,11 +13,31 @@
         </Style>
 
         <DataTemplate x:Key="resumePlanets" x:DataType="models:Planet">
-            <TextCell Text="{Binding Name}" Detail="{Binding Description}">
-                <TextCell.ContextActions>
-                    <MenuItem Text="Delete" Clicked="MenuItem_Clicked"></MenuItem>
-                </TextCell.ContextActions>
-            </TextCell>
+            <!--<SwipeView>
+                <SwipeView.RightItems>
+                    <SwipeItem Text="Delete" IsDestructive="True" BackgroundColor="Red"></SwipeItem>
+                    <SwipeItem Text="Edit" IsDestructive="False" BackgroundColor="Green"></SwipeItem>
+                </SwipeView.RightItems>
+                <StackLayout>
+                    <Frame>
+                        
+                    </Frame>
+                </StackLayout>
+            </SwipeView>-->
+            <SwipeView>
+                <SwipeView.RightItems>
+                    <SwipeItem Text="Delete" IsDestructive="True" BackgroundColor="Red" CommandParameter="{Binding Id}" Command="{Binding Path=BindingContext.DeleteOneCommand, Source={x:Reference lstPlanets}}"></SwipeItem>
+                    <SwipeItem Text="Edit" IsDestructive="False" BackgroundColor="Green"></SwipeItem>
+                </SwipeView.RightItems>
+                <StackLayout Spacing="5">
+                    <Frame>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Name}"></Label>
+                            <Label Text="{Binding Description}"></Label>
+                        </VerticalStackLayout>
+                    </Frame>
+                </StackLayout>
+            </SwipeView>
         </DataTemplate>
     </ContentPage.Resources>
     <StackLayout>
@@ -46,8 +66,8 @@
             <Grid Grid.Row="2">
                 <VerticalStackLayout>
                     <ActivityIndicator x:Name="activity"></ActivityIndicator>
-                    <ListView BackgroundColor="Transparent" x:Name="lstPlanets" ItemsSource="{Binding Planets}" ItemSelected="lstPlanets_ItemSelected" ItemTapped="lstPlanets_ItemTapped" ItemTemplate="{Binding Source={StaticResource resumePlanets}}">
-                    </ListView>
+                    <CollectionView BackgroundColor="Transparent" x:Name="lstPlanets" ItemsSource="{Binding Planets}" ItemTemplate="{Binding Source={StaticResource resumePlanets}}">
+                    </CollectionView>
                 </VerticalStackLayout>
             </Grid>
         </Grid>

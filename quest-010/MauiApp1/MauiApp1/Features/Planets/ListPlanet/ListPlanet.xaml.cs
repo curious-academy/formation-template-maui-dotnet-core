@@ -61,8 +61,6 @@ public partial class ListPlanet : ContentPage
         MenuItem item = sender as MenuItem;
         var planet = item.BindingContext as Planet;
         this.planets.Delete(planet);
-
-        this.lstPlanets.ItemsSource = new ObservableCollection<Planet>(AllModels.Planets.Planets.List);
     }
 
     private void search_TextChanged(object sender, TextChangedEventArgs e)

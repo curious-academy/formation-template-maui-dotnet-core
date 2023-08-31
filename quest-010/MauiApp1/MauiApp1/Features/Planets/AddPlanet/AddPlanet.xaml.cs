@@ -1,5 +1,5 @@
 using AllModels.Planets;
-using Interfaces;
+using MauiApp1.Features.Planets.AddPlanet.ViewModels;
 
 namespace MauiApp1.Features.Planets.AddPlanet;
 
@@ -8,21 +8,22 @@ public partial class AddPlanet : ContentPage
 {
     #region Fields
     private AllModels.Planets.Planets planets = new AllModels.Planets.Planets();
-    private readonly IAddOnePlanet addOnePlanet;
+    private readonly AddPlanetViewModel viewModel;
     #endregion
 
     #region Constructors
-    public AddPlanet(IAddOnePlanet addOnePlanet)
+    public AddPlanet(AddPlanetViewModel viewModel)
     {
-        this.addOnePlanet = addOnePlanet;
         InitializeComponent();
+        this.viewModel = viewModel;
+        this.BindingContext = viewModel;
     }
     #endregion
 
     #region Internal methods
     private void btnSave_Clicked(object sender, EventArgs e)
     {
-        this.CurrentItem.Set(this.txtName.Text);
+        //this.CurrentItem.Set(this.txtName.Text);
         Shell.Current.GoToAsync("..");
     }
     #endregion
@@ -33,7 +34,8 @@ public partial class AddPlanet : ContentPage
         set
         {
             this.CurrentItem = this.planets.GetById(value);
-            this.txtName.Text = this.CurrentItem.Name;
+            this.viewModel.Planet = this.CurrentItem;
+            //this.txtName.Text = this.CurrentItem.Name;
         }
     }
 
