@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MainPage">
+			 
+    <ScrollView>
+        <VerticalStackLayout 
+            Spacing="25" 
+            Padding="30,0" 
+            VerticalOptions="Center">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+            </Grid>
+
+            <Button Grid.Column="0" Text="Liste des planètes" x:Name="btnGoToListPlanets" Clicked="btnGoToListPlanets_Clicked"></Button>
+            <Button Grid.Column="1" Text="Ajout d'une planète" x:Name="btnGoToAddPlanet" Clicked="btnGoToAddPlanet_Clicked"></Button>
+        </VerticalStackLayout>
+    </ScrollView>
+ 
+</ContentPage>
