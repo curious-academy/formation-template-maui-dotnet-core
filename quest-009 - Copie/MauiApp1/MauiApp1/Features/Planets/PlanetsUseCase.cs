@@ -6,10 +6,9 @@ namespace MauiApp1.Features.Planets
     public class PlanetsUseCase
     {
         #region Constructors
-        public PlanetsUseCase(IGetPlanets getPlanets, IAddOnePlanet addOnePlanet)
+        public PlanetsUseCase(IGetPlanets getPlanets)
         {
             this.GetPlanets = getPlanets;
-            this.AddOnePlanet = addOnePlanet;
         }
         #endregion
 
@@ -20,17 +19,10 @@ namespace MauiApp1.Features.Planets
 
             return result.ToList();
         }
-
-        public async Task<Planet> SaveOne(Planet item)
-        {
-            return await this.AddOnePlanet.AddOneAsync(item);
-        }
         #endregion
 
         #region Properties
         public IGetPlanets GetPlanets { get; init; }
-
-        public IAddOnePlanet AddOnePlanet { get; init; }
         #endregion
     }
 }

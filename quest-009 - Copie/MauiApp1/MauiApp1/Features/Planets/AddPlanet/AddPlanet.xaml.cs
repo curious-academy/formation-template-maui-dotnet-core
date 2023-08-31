@@ -1,4 +1,5 @@
 using AllModels.Planets;
+using Interfaces;
 
 namespace MauiApp1.Features.Planets.AddPlanet;
 
@@ -6,38 +7,36 @@ namespace MauiApp1.Features.Planets.AddPlanet;
 public partial class AddPlanet : ContentPage
 {
     #region Fields
-    //private AllModels.Planets.Planets planets = new AllModels.Planets.Planets();
-    private PlanetsUseCase useCase;
+    private AllModels.Planets.Planets planets = new AllModels.Planets.Planets();
+    private readonly IAddOnePlanet addOnePlanet;
     #endregion
 
     #region Constructors
-    public AddPlanet(PlanetsUseCase useCase)
+    public AddPlanet(IAddOnePlanet addOnePlanet)
     {
-
+        this.addOnePlanet = addOnePlanet;
         InitializeComponent();
-        this.useCase = useCase;
     }
     #endregion
 
     #region Internal methods
-    private async void btnSave_Clicked(object sender, EventArgs e)
+    private void btnSave_Clicked(object sender, EventArgs e)
     {
         this.CurrentItem.Set(this.txtName.Text);
-        await this.useCase.SaveOne(this.CurrentItem);
-        await Shell.Current.GoToAsync("..");
+        Shell.Current.GoToAsync("..");
     }
     #endregion
 
-    //#region Properties
+    #region Properties
     public int PlanetId
     {
         set
         {
-            this.CurrentItem = new(value, string.Empty, string.Empty);
+            this.CurrentItem = this.planets.GetById(value);
             this.txtName.Text = this.CurrentItem.Name;
         }
     }
 
     public Planet CurrentItem { get; set; }
-    //#endregion
+    #endregion
 }

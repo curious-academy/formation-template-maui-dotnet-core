@@ -7,7 +7,6 @@ namespace SQLite.Plugins.Models
         #region Properties
         [Required]
         [PrimaryKey]
-        [AutoIncrement]
         public int Id { get; set; }
 
         [Required]
