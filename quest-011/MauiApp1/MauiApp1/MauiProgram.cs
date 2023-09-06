@@ -6,6 +6,7 @@ using MauiApp1.Features.Planets.ListPlanet;
 using MauiApp1.Features.Planets.ListPlanet.ViewModels;
 using MauiApp1.Shared.UIs.Dialogs;
 using MetroLog.MicrosoftExtensions;
+using MetroLog.Operators;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.LifecycleEvents;
 using Services;
@@ -84,6 +85,7 @@ public static class MauiProgram
                     options.MaxLevel = LogLevel.Critical;
                 }); // Will write to the Console Output (logcat for android)
 
+        builder.Services.AddSingleton(LogOperatorRetriever.Instance);
 
         builder.Services.AddSingleton<IDialogService, DialogService>();
         builder.Services.AddSingleton<IAddOnePlanet, SQLiteAddOnePlanet>();
