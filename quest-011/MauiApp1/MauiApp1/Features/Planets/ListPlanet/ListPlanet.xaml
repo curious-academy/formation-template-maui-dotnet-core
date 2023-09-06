@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Features.Planets.ListPlanet.ListPlanet"
+             xmlns:models="clr-namespace:AllModels.Planets;assembly=AllModels"
+             xmlns:vm="clr-namespace:MauiApp1.Features.Planets.ListPlanet.ViewModels"
+             x:DataType="vm:ListPlanetViewModel"
+             Title="Liste des planètes">
+    <ContentPage.Resources>
+        <Style TargetType="ListView">
+            <Setter Property="SeparatorColor" Value="AliceBlue"></Setter>
+            <Setter Property="RowHeight" Value="150"></Setter>
+        </Style>
+
+        <DataTemplate x:Key="resumePlanets" x:DataType="models:Planet">
+            <!--<SwipeView>
+                <SwipeView.RightItems>
+                    <SwipeItem Text="Delete" IsDestructive="True" BackgroundColor="Red"></SwipeItem>
+                    <SwipeItem Text="Edit" IsDestructive="False" BackgroundColor="Green"></SwipeItem>
+                </SwipeView.RightItems>
+                <StackLayout>
+                    <Frame>
+                        
+                    </Frame>
+                </StackLayout>
+            </SwipeView>-->
+            <SwipeView>
+                <SwipeView.RightItems>
+                    <SwipeItem Text="Delete" IsDestructive="True" BackgroundColor="Red" CommandParameter="{Binding Id}" Command="{Binding Path=BindingContext.DeleteOneCommand, Source={x:Reference lstPlanets}}"></SwipeItem>
+                    <SwipeItem Text="Edit" IsDestructive="False" BackgroundColor="Green"></SwipeItem>
+                </SwipeView.RightItems>
+                <StackLayout Spacing="5">
+                    <Frame>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Name}"></Label>
+                            <Label Text="{Binding Description}"></Label>
+                        </VerticalStackLayout>
+                    </Frame>
+                </StackLayout>
+            </SwipeView>
+        </DataTemplate>
+    </ContentPage.Resources>
+    <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="15*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="0" Grid.Column="2" Text="Back" x:Name="btnGoBack"></Button>
+            </Grid>
+            <HorizontalStackLayout Grid.Row="1">
+                <SearchBar Placeholder="Searching" x:Name="search" TextChanged="search_TextChanged" SearchButtonPressed="search_SearchButtonPressed"></SearchBar>
+            </HorizontalStackLayout>
+            <Grid Grid.Row="2">
+                <VerticalStackLayout>
+                    <ActivityIndicator x:Name="activity"></ActivityIndicator>
+                    <CollectionView BackgroundColor="Transparent" x:Name="lstPlanets" ItemsSource="{Binding Planets}" ItemTemplate="{Binding Source={StaticResource resumePlanets}}">
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+    </StackLayout>
+</ContentPage>
