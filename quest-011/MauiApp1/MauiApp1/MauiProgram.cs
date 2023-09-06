@@ -5,6 +5,8 @@ using MauiApp1.Features.Planets.AddPlanet.ViewModels;
 using MauiApp1.Features.Planets.ListPlanet;
 using MauiApp1.Features.Planets.ListPlanet.ViewModels;
 using MauiApp1.Shared.UIs.Dialogs;
+using MetroLog.MicrosoftExtensions;
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui.LifecycleEvents;
 using Services;
 using SQLite.Plugins;
@@ -48,6 +50,40 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
+
+        builder.Logging
+#if DEBUG
+            .AddTraceLogger(
+                options =>
+                {
+                    options.MinLevel = LogLevel.Trace;
+                    options.MaxLevel = LogLevel.Critical;
+                }) // Will write to the Debug Output
+#endif
+            .AddInMemoryLogger(
+                options =>
+                {
+                    options.MaxLines = 1024;
+                    options.MinLevel = LogLevel.Debug;
+                    options.MaxLevel = LogLevel.Critical;
+                })
+#if RELEASE
+            .AddStreamingFileLogger(
+                options =>
+                {
+                    options.RetainDays = 2;
+                    options.FolderPath = Path.Combine(
+                        FileSystem.CacheDirectory,
+                        "MetroLogs");
+                })
+#endif
+            .AddConsoleLogger(
+                options =>
+                {
+                    options.MinLevel = LogLevel.Information;
+                    options.MaxLevel = LogLevel.Critical;
+                }); // Will write to the Console Output (logcat for android)
+
 
         builder.Services.AddSingleton<IDialogService, DialogService>();
         builder.Services.AddSingleton<IAddOnePlanet, SQLiteAddOnePlanet>();
