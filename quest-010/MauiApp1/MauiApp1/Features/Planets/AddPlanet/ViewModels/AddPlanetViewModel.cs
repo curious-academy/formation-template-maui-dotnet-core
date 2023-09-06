@@ -15,6 +15,9 @@ namespace MauiApp1.Features.Planets.AddPlanet.ViewModels
 
         [ObservableProperty]
         private string name = string.Empty;
+
+        [ObservableProperty]
+        private bool nameIsValid = false;
         #endregion
 
         #region Constructors
@@ -29,7 +32,16 @@ namespace MauiApp1.Features.Planets.AddPlanet.ViewModels
         [RelayCommand]
         public async Task SaveOne()
         {
-            await this.dialogService.ShowConfirmationAsync("Save is done", "Data are saved");
+            if (this.NameIsValid)
+            {
+                await this.dialogService.ShowConfirmationAsync("Save is done", "Data are saved");
+            }
+        }
+
+        [RelayCommand]
+        public async Task ForceValidateName()
+        {
+            await this.dialogService.ShowConfirmationAsync("Validate", "Name ?");
         }
         #endregion
 

@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using CommunityToolkit.Maui;
+using Interfaces;
 using MauiApp1.Features.Planets;
 using MauiApp1.Features.Planets.AddPlanet;
 using MauiApp1.Features.Planets.AddPlanet.ViewModels;
@@ -17,6 +18,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

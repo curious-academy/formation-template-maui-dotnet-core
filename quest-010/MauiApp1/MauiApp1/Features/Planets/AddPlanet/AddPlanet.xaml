@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Features.Planets.AddPlanet.AddPlanet"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:DataType="vm:AddPlanetViewModel"
              xmlns:vm="clr-namespace:MauiApp1.Features.Planets.AddPlanet.ViewModels"
              Title="Ajout d'une planète">
@@ -9,7 +10,11 @@
         <Frame>
             <HorizontalStackLayout>
                 <Label Text="Nom" ></Label>
-                <Entry x:Name="txtName" Text="{Binding Name}"></Entry>
+                <Entry x:Name="txtName" Text="{Binding Name}">
+                    <Entry.Behaviors>
+                        <toolkit:TextValidationBehavior MinimumLength="2" ForceValidateCommand="{Binding ForceValidateNameCommand}" IsValid="{Binding NameIsValid}" Flags="ValidateOnAttaching,ValidateOnValueChanged"></toolkit:TextValidationBehavior>
+                    </Entry.Behaviors>
+                </Entry>
             </HorizontalStackLayout>
         </Frame>
 
