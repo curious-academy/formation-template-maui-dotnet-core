@@ -1,4 +1,6 @@
-﻿namespace MauiApp1;
+﻿using MetroLog.Maui;
+
+namespace MauiApp1;
 
 public partial class App : Application
 {
@@ -7,6 +9,10 @@ public partial class App : Application
         InitializeComponent();
 
         MainPage = new AppShell();
+
+        LogController.InitializeNavigation(
+            page => MainPage!.Navigation.PushModalAsync(page),
+            () => MainPage!.Navigation.PopModalAsync());
     }
 
     protected override Window CreateWindow(IActivationState activationState)

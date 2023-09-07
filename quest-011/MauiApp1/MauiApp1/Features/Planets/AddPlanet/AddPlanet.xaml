@@ -14,9 +14,10 @@
         </Frame>
 
         <Frame>
-            <HorizontalStackLayout>
+            <VerticalStackLayout>
                 <Button x:Name="btnSave" Text="Save" Command="{Binding SaveOneCommand}"></Button>
-            </HorizontalStackLayout>
+                <Button x:Name="btnSave2" Text="Save" Clicked="btnSave_Clicked"></Button>
+            </VerticalStackLayout>
         </Frame>
     </VerticalStackLayout>
 </ContentPage>

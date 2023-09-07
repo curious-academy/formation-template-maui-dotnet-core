@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Features.Loggers.ShowLogs"
+             Title="ShowLogs">
+    <ScrollView>
+        <VerticalStackLayout Spacing="25"
+                             Padding="30,0"
+                             VerticalOptions="Center">
+
+            <Grid ColumnDefinitions="Auto,*">
+                <HorizontalStackLayout HorizontalOptions="Fill" Spacing="10">
+                    <Switch IsToggled="{Binding IsShakeEnabled}" />
+                    <Label Text="Shake to show logs!" VerticalOptions="Center" VerticalTextAlignment="Center" />
+                </HorizontalStackLayout>
+                <Button Text="Show Logs"
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        Command="{Binding GoToLogsPageCommand}"/>
+            </Grid>
+
+            <Image Source="logo.png"
+                      SemanticProperties.Description="Metro log logo: a metro panel and a log"
+                      HeightRequest="200"
+                      HorizontalOptions="Center" />
+
+            <Label Text="Hello, Logs!"
+                   SemanticProperties.HeadingLevel="Level1"
+                   FontSize="32"
+                   HorizontalOptions="Center" />
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

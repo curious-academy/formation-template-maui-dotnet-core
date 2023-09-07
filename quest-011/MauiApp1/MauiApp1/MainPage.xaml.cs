@@ -1,4 +1,5 @@
-﻿using MauiApp1.Features.Planets.AddPlanet;
+﻿using MauiApp1.Features.Loggers;
+using MauiApp1.Features.Planets.AddPlanet;
 using MauiApp1.Features.Planets.ListPlanet;
 
 namespace MauiApp1;
@@ -27,6 +28,11 @@ public partial class MainPage : ContentPage
     private void btnGoToAddPlanet_Clicked(object sender, EventArgs e)
     {
         Shell.Current.GoToAsync(nameof(AddPlanet));
+    }
+
+    private void btnShowLogs_Clicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync(nameof(ShowLogs));
     }
 }
 

@@ -70,6 +70,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Features\Loggers\ShowLogs.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Planets\AddPlanet\AddPlanet.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
